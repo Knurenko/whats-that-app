@@ -4,7 +4,6 @@ import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.viewModels
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -21,10 +20,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.knurenko.whatsthat.ui.theme.AppTheme
 import com.knurenko.whatsthat.ui.theme.ThemeSwitchViewModel
+import org.koin.android.ext.android.inject
 
 class MainActivity : ComponentActivity() {
 
-    private val vm: ThemeSwitchViewModel by viewModels()
+    private val vm: ThemeSwitchViewModel by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
