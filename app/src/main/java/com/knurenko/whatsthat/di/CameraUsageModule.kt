@@ -6,16 +6,19 @@ import androidx.camera.core.Preview
 import androidx.camera.view.PreviewView
 import com.knurenko.whatsthat.data.repo.DetectedObjectRepositoryImpl
 import com.knurenko.whatsthat.di.camerax.FrameAnalyzerFactory
+import com.knurenko.whatsthat.di.camerax.ImageCaptureFactory
+import com.knurenko.whatsthat.di.camerax.PreviewFactory
 import com.knurenko.whatsthat.domain.repo.DetectedObjectRepository
 import com.knurenko.whatsthat.domain.usecase.CapturePicOfObject
+import com.knurenko.whatsthat.presentation.camerax.analyzer.FrameAnalyzer
 import com.knurenko.whatsthat.presentation.camerax.analyzer.OnObjectDetectedListener
-import com.knurenko.whatsthat.presentation.camerax.capture.CapturePicOfObjectImpl
-import com.knurenko.whatsthat.di.camerax.ImageCaptureFactory
 import com.knurenko.whatsthat.presentation.camerax.capture.BitmapFromImageProxyExtractor
-import com.knurenko.whatsthat.di.camerax.PreviewFactory
+import com.knurenko.whatsthat.presentation.camerax.capture.CapturePicOfObjectImpl
 import com.knurenko.whatsthat.presentation.camerax.utils.AnalysisToRelativeBoundingBoxMapper
 import com.knurenko.whatsthat.presentation.camerax.utils.RelativeToAbsoluteBoundingBoxMapper
+import com.knurenko.whatsthat.presentation.ui.compose.screens.cameraView.CameraViewModel
 import kotlinx.coroutines.CoroutineScope
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
@@ -35,7 +38,7 @@ val cameraUsageModule = module {
             relativeToAbsoluteBoundingBoxMapper = get()
         )
     }
-    single<OnObjectDetectedListener> { (scope: CoroutineScope) -> OnObjectDetectedListener(
+    single<FrameAnalyzer.ImageProcessorListener> { (scope: CoroutineScope) -> OnObjectDetectedListener(
         scope = scope,
         detectedObjectRepo = get(),
         mapper = get()
@@ -52,11 +55,13 @@ val cameraUsageModule = module {
     // camerax useCases
     single<ImageCapture> { ImageCaptureFactory.create() }
     single<Preview> { (previewView: PreviewView) -> PreviewFactory.create(previewView = previewView) }
-    single<ImageAnalysis> { FrameAnalyzerFactory.create(
+    single<ImageAnalysis> { (listener: FrameAnalyzer.ImageProcessorListener) -> FrameAnalyzerFactory.create(
+        onObjectDetectedListener = listener,
         executorService = get(),
-        onObjectDetectedListener = get(),
     ) }
 
     // repo
     single<DetectedObjectRepository> { DetectedObjectRepositoryImpl() }
+
+    viewModel { CameraViewModel(detectedObjectRepository = get()) }
 }

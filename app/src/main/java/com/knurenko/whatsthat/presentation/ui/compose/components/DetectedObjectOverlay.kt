@@ -34,10 +34,11 @@ private val borderStrokeWidth = 2.dp
 
 @OptIn(ExperimentalTextApi::class)
 @Composable
-fun DetectedObjectOverlay(obj: DetectedObjectModel) {
+fun DetectedObjectOverlay(obj: DetectedObjectModel?) {
     val accentColor = AppTheme.colors.accent
     val textMeasurer = rememberTextMeasurer()
 
+    if (obj == null) return
     Canvas(modifier = Modifier.fillMaxSize()) {
         drawIntoCanvas {
             val width = size.width
@@ -58,7 +59,10 @@ fun DetectedObjectOverlay(obj: DetectedObjectModel) {
                 drawRoundRect(
                     color = accentColor,
                     size = boundsSize,
-                    cornerRadius = CornerRadius(borderCornerRadius.toPx(), borderCornerRadius.toPx()),
+                    cornerRadius = CornerRadius(
+                        borderCornerRadius.toPx(),
+                        borderCornerRadius.toPx()
+                    ),
                     style = Stroke(width = borderStrokeWidth.toPx())
                 )
 
