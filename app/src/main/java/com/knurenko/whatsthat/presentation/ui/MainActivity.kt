@@ -1,4 +1,4 @@
-package com.knurenko.whatsthat
+package com.knurenko.whatsthat.presentation.ui
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.os.Bundle
@@ -18,8 +18,8 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.knurenko.whatsthat.ui.theme.AppTheme
-import com.knurenko.whatsthat.ui.theme.ThemeSwitchViewModel
+import com.knurenko.whatsthat.presentation.ui.theme.AppTheme
+import com.knurenko.whatsthat.presentation.ui.theme.ThemeSwitchViewModel
 import org.koin.android.ext.android.inject
 
 class MainActivity : ComponentActivity() {

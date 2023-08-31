@@ -1,4 +1,4 @@
-package com.knurenko.whatsthat.ui.compose.components
+package com.knurenko.whatsthat.presentation.ui.compose.components
 
 import android.content.res.Configuration
 import android.graphics.RectF
@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.knurenko.whatsthat.domain.entity.DetectedObjectModel
-import com.knurenko.whatsthat.ui.theme.AppTheme
+import com.knurenko.whatsthat.presentation.ui.theme.AppTheme
 
 /**
  * @author Knurenko Bogdan 31.08.2023
