@@ -1,4 +1,4 @@
-package com.knurenko.whatsthat.domain
+package com.knurenko.whatsthat.domain.entity
 
 import android.graphics.RectF
 
@@ -12,7 +12,7 @@ import android.graphics.RectF
  *
  * @author Knurenko Bogdan 31.08.2023
  */
-data class DetectedObject(
+data class DetectedObjectModel(
     val id: Int,
     val relativeBox: RectF,
     val label: String?

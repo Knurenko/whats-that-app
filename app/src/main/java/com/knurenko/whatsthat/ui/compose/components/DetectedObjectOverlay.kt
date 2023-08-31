@@ -22,7 +22,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.knurenko.whatsthat.domain.DetectedObject
+import com.knurenko.whatsthat.domain.entity.DetectedObjectModel
 import com.knurenko.whatsthat.ui.theme.AppTheme
 
 /**
@@ -34,7 +34,7 @@ private val borderStrokeWidth = 2.dp
 
 @OptIn(ExperimentalTextApi::class)
 @Composable
-fun DetectedObjectOverlay(obj: DetectedObject) {
+fun DetectedObjectOverlay(obj: DetectedObjectModel) {
     val accentColor = AppTheme.colors.accent
     val textMeasurer = rememberTextMeasurer()
 
@@ -90,7 +90,7 @@ fun DetectedObjectOverlay(obj: DetectedObject) {
 @Preview(name = "Dark theme", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun Preview() = AppTheme {
-    val previewObj = DetectedObject(
+    val previewObj = DetectedObjectModel(
         id = 1,
         relativeBox = RectF(
             .2f, .1f, .7f, .34f
