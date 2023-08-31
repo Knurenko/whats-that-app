@@ -1,6 +1,7 @@
 package com.knurenko.whatsthat.di
 
-import com.knurenko.whatsthat.ui.theme.ThemeSwitchViewModel
+import com.knurenko.whatsthat.presentation.ui.theme.NightModeStorage
+import com.knurenko.whatsthat.presentation.ui.theme.ThemeSwitchViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -9,5 +10,6 @@ import org.koin.dsl.module
  */
 
 val appModule = module {
-    viewModel { ThemeSwitchViewModel() }
+    single { NightModeStorage(context = get()) }
+    viewModel { ThemeSwitchViewModel(nightModeStorage = get()) }
 }
