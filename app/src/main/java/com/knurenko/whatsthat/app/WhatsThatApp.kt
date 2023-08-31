@@ -2,6 +2,7 @@ package com.knurenko.whatsthat.app
 
 import android.app.Application
 import com.knurenko.whatsthat.di.appModule
+import com.knurenko.whatsthat.di.cameraUsageModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -14,7 +15,7 @@ class WhatsThatApp : Application() {
 
         startKoin {
             androidContext(this@WhatsThatApp)
-            modules(appModule)
+            modules(appModule, cameraUsageModule)
         }
     }
 }
