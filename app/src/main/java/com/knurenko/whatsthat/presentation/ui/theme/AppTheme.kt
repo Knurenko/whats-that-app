@@ -1,4 +1,4 @@
-package com.knurenko.whatsthat.ui.theme
+package com.knurenko.whatsthat.presentation.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
