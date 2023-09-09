@@ -23,7 +23,7 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleOwner
 import com.google.common.util.concurrent.ListenableFuture
 import com.knurenko.whatsthat.presentation.camerax.analyzer.FrameAnalyzer
-import com.knurenko.whatsthat.presentation.ui.compose.components.DetectedObjectOverlay
+import com.knurenko.whatsthat.presentation.ui.compose.components.overlay.DetectedObjectOverlay
 import org.koin.androidx.compose.koinViewModel
 import org.koin.compose.koinInject
 import org.koin.core.parameter.parametersOf
@@ -59,7 +59,7 @@ fun CameraViewScreen() {
     val vm: CameraViewModel = koinViewModel()
 
     AndroidView(factory = { previewView }, modifier = Modifier.fillMaxSize())
-    DetectedObjectOverlay(obj = vm.detectedObject.collectAsState(initial = null).value)
+    DetectedObjectOverlay(detectedObject = vm.detectedObject.collectAsState(initial = null).value)
 }
 
 private fun startCamera(
