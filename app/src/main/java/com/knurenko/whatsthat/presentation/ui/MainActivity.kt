@@ -4,8 +4,12 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
-import com.knurenko.whatsthat.presentation.ui.compose.screens.cameraView.CameraViewScreen
-import com.knurenko.whatsthat.presentation.ui.compose.screens.permissionCheck.PermissionCheckScreen
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.remember
+import androidx.navigation.compose.rememberNavController
+import com.knurenko.whatsthat.presentation.navigation.LocalRouter
+import com.knurenko.whatsthat.presentation.navigation.NavGraph
+import com.knurenko.whatsthat.presentation.navigation.NavRouter
 import com.knurenko.whatsthat.presentation.ui.theme.AppTheme
 import com.knurenko.whatsthat.presentation.ui.theme.ThemeSwitchViewModel
 import org.koin.android.ext.android.inject
@@ -23,12 +27,13 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun AppRoot(
-    isDarkMode: Boolean = false
-) {
+fun AppRoot(isDarkMode: Boolean = false) {
+    val navController = rememberNavController()
+    val router = remember { NavRouter(navController) }
+
     AppTheme(isDarkMode) {
-        PermissionCheckScreen {
-            CameraViewScreen()
+        CompositionLocalProvider(LocalRouter provides router) {
+            NavGraph(navHostController = navController)
         }
     }
 }
