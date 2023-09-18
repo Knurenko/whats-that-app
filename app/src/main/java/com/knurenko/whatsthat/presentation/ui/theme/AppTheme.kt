@@ -29,14 +29,13 @@ private val LocalTypography = staticCompositionLocalOf { AppTypography() }
 @Composable
 fun AppTheme(
     isDarkMode: Boolean = isSystemInDarkTheme(),
-    typography: AppTypography = AppTheme.typography,
     content: @Composable () -> Unit
 ) {
     val themedColors: AppColors = if (isDarkMode) darkColors else lightColors
 
     CompositionLocalProvider(
         LocalColors provides themedColors,
-        LocalTypography provides typography
+        LocalTypography provides AppTheme.typography
     ) {
         MaterialTheme {
             content()

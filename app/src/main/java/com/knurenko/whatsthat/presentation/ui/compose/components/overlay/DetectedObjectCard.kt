@@ -1,4 +1,4 @@
-package com.knurenko.whatsthat.presentation.ui.compose.components
+package com.knurenko.whatsthat.presentation.ui.compose.components.overlay
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.background

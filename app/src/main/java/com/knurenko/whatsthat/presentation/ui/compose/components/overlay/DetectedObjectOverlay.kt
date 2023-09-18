@@ -9,8 +9,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.tooling.preview.Preview
 import com.knurenko.whatsthat.domain.entity.DetectedObjectModel
-import com.knurenko.whatsthat.presentation.ui.compose.components.DetectedObjectBorders
-import com.knurenko.whatsthat.presentation.ui.compose.components.DetectedObjectCard
 import com.knurenko.whatsthat.presentation.ui.theme.AppTheme
 
 /**
