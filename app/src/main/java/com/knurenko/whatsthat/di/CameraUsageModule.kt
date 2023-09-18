@@ -18,6 +18,7 @@ import com.knurenko.whatsthat.presentation.camerax.utils.AnalysisToRelativeBound
 import com.knurenko.whatsthat.presentation.camerax.utils.RelativeToAbsoluteBoundingBoxMapper
 import com.knurenko.whatsthat.presentation.ui.compose.screens.cameraView.CameraViewModel
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import java.util.concurrent.ExecutorService
@@ -32,14 +33,16 @@ val cameraUsageModule = module {
     single { AnalysisToRelativeBoundingBoxMapper() }
     single { RelativeToAbsoluteBoundingBoxMapper() }
 
+    factory { CoroutineScope(Dispatchers.IO) }
+
     // special
     single {
         BitmapFromImageProxyExtractor(
             relativeToAbsoluteBoundingBoxMapper = get()
         )
     }
-    single<FrameAnalyzer.ImageProcessorListener> { (scope: CoroutineScope) -> OnObjectDetectedListener(
-        scope = scope,
+    single<FrameAnalyzer.ImageProcessorListener> {  OnObjectDetectedListener(
+        scope = get(),
         detectedObjectRepo = get(),
         mapper = get()
     ) }

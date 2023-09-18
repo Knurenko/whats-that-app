@@ -49,7 +49,7 @@ fun CameraScreenController() {
 
     val previewView = remember { PreviewView(context) }
 
-    val onObjectDetectedListener: FrameAnalyzer.ImageProcessorListener = koinInject { parametersOf(scope) }
+    val onObjectDetectedListener: FrameAnalyzer.ImageProcessorListener = koinInject()
     val imagePreview: Preview = koinInject { parametersOf(previewView) }
     val imageCapture: ImageCapture = koinInject()
     val imageAnalysis: ImageAnalysis = koinInject { parametersOf(onObjectDetectedListener) }
