@@ -7,6 +7,7 @@ import androidx.navigation.compose.composable
 import com.knurenko.whatsthat.presentation.ui.compose.screens.cameraView.CameraScreenController
 import com.knurenko.whatsthat.presentation.ui.compose.screens.dummy.DummyScreen
 import com.knurenko.whatsthat.presentation.ui.compose.screens.permissionCheck.PermissionCheckScreen
+import com.knurenko.whatsthat.presentation.ui.compose.screens.settings.SettingsScreenController
 
 /**
  * @author Knurenko Bogdan 18.09.2023
@@ -28,7 +29,7 @@ fun NavGraph(navHostController: NavHostController) {
         }
 
         composable(Screens.SETTINGS) {
-            DummyScreen(text = "Settings screen")
+            SettingsScreenController()
         }
     }
 }

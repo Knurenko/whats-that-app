@@ -12,12 +12,12 @@ class ThemeSwitchViewModel(
     private val nightModeStorage: NightModeStorage
 ) : ViewModel() {
 
-    var isDarkTheme by mutableStateOf(nightModeStorage.isNightModeEnabled)
+    var isDarkTheme by mutableStateOf(nightModeStorage.isNightModeSelected)
         private set
 
     fun toggleTheme() {
         val flipped = !isDarkTheme
         isDarkTheme = flipped
-        nightModeStorage.isNightModeEnabled = flipped
+        nightModeStorage.isNightModeSelected = flipped
     }
 }

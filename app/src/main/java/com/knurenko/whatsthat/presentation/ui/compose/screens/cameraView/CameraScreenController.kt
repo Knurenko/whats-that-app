@@ -70,7 +70,7 @@ fun CameraScreenController() {
 
     ModalNavigationDrawer(
         drawerState = drawerState,
-        drawerContent = { NavigationDrawerContent() }
+        drawerContent = { NavigationDrawerContent(router) }
     ) {
         AndroidView(factory = { previewView }, modifier = Modifier.fillMaxSize())
         CameraScreenView(

@@ -12,26 +12,24 @@ import com.knurenko.whatsthat.presentation.navigation.NavGraph
 import com.knurenko.whatsthat.presentation.navigation.NavRouter
 import com.knurenko.whatsthat.presentation.ui.theme.AppTheme
 import com.knurenko.whatsthat.presentation.ui.theme.ThemeSwitchViewModel
-import org.koin.android.ext.android.inject
+import org.koin.compose.koinInject
 
 class MainActivity : ComponentActivity() {
-
-    private val vm: ThemeSwitchViewModel by inject()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            AppRoot(isDarkMode = vm.isDarkTheme)
+            AppRoot()
         }
     }
 }
 
 @Composable
-fun AppRoot(isDarkMode: Boolean = false) {
+fun AppRoot() {
     val navController = rememberNavController()
     val router = remember { NavRouter(navController) }
+    val themeViewModel: ThemeSwitchViewModel = koinInject()
 
-    AppTheme(isDarkMode) {
+    AppTheme(isDarkMode = themeViewModel.isDarkTheme) {
         CompositionLocalProvider(LocalRouter provides router) {
             NavGraph(navHostController = navController)
         }

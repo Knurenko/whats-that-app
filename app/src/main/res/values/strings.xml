@@ -5,4 +5,11 @@
     <string name="permission_not_available_error">Oops! Seems like it is not possible to run this app</string>
     <string name="permission_request_again">Request permission again</string>
     <string name="object_label_null">Wrong object label</string>
+
+    <string name="screens_settings_title">Settings</string>
+    <string name="settings_ui_theme_title">Theme</string>
+
+    <!-- theme values -->
+    <string name="ui_mode_light">Light</string>
+    <string name="ui_mode_dark">Dark</string>
 </resources>

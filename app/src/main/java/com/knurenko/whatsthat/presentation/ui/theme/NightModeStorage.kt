@@ -14,14 +14,14 @@ class NightModeStorage(context: Context) {
         context.getSharedPreferences("NIGHT_MODE_PREFS", Context.MODE_PRIVATE)
     }
 
-    var isNightModeEnabled: Boolean
-        get() = prefs.getBoolean(NIGHT_MODE_KEY, firstLaunchValue)
+    var isNightModeSelected: Boolean
+        get() = prefs.getBoolean(NIGHT_MODE_KEY, initialNightMode)
         set(value) = with(prefs.edit()) {
             putBoolean(NIGHT_MODE_KEY, value)
             apply()
         }
 
-    private val firstLaunchValue by lazy {
+    private val initialNightMode by lazy {
         val nightModeFlags: Int = context.resources.configuration.uiMode and
                 Configuration.UI_MODE_NIGHT_MASK
         when (nightModeFlags) {
